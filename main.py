@@ -18,7 +18,8 @@ def calculateprice(dollars:float, local_currency_value_against_dollar:float) -> 
 
 @click.command()
 @click.option("-p", "--price", type=float, required=True, prompt="price in dollars")
-def main(price:float) -> None:
+@click.option("-v", "--vertical", is_flag=True, type=bool)
+def main(price:float, vertical:bool) -> None:
     unit_percent_price:float = round((price/100),2)
 
     ebay_tax:float = unit_percent_price * ebay_buy_tax
@@ -39,15 +40,24 @@ def main(price:float) -> None:
     final_cost:float = shipper_totalcost + ebay_final_price
 
     final_cost_in_local_currency:float = final_cost * currency_against_dollar["peso"]
+    
+    printable_values:list[float] = [ 
+        price, value, ebay_final_price, ebay_final_price_in_local_currency,
+        shipper_totalcost, shipper_totalcost_local_currency, final_cost, final_cost_in_local_currency
+    ]
 
-    values.append(
-        [ 
-            price, value, ebay_final_price, ebay_final_price_in_local_currency,
-            shipper_totalcost, shipper_totalcost_local_currency, final_cost, final_cost_in_local_currency
-        ]
-    )
+    if(vertical is True): 
+        for index,header in enumerate(headers):
+            new_element:list = [header, printable_values[index]]
+            values.append(new_element)
+        print(tabulate(values))
 
-    print(tabulate(values, headers=headers))
+    else:
+        values.append(printable_values)
+        print(tabulate(values, headers=headers))
+    
+
+        
 
 
 if __name__ == "__main__":
