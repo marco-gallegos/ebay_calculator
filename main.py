@@ -8,7 +8,7 @@ import_tax_percent:float = 19
 ebay_buy_tax:float = 8.25
 
 currency_against_dollar: dict[str,float] = {
-    "peso": 20.2
+    "peso": 19.7
 }
 
 
