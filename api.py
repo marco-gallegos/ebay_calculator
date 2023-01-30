@@ -3,6 +3,7 @@ from fastapi import FastAPI
 # from routes.student import student_router
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+from routes import calculator
 
 client_apps = ['http://localhost:3000']#Our REACT app will be running on this IP and PORT
 
@@ -14,6 +15,9 @@ app = FastAPI()
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
+
+# modularizing routes
+app.include_router(calculator)
 
 #Register App with CORS middleware to allow resourse sharing between different domains/origins
 app.add_middleware(

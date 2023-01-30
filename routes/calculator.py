@@ -1,7 +1,8 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 
-app = FastAPI()
+app = APIRouter()
 
-@app.route("/calculator/{user_id}")
+@app.get("/calculator/{user_id}")
 async def read_user(user_id: str):
+    print(user_id)
     return {"user_id": user_id}
