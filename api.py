@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from routes import calculator
 
-client_apps = ['http://localhost:3000']#Our REACT app will be running on this IP and PORT
+client_apps = ['http://localhost:3000', '*'] #Our REACT app will be running on this IP and PORT
 
 # Create app
 app = FastAPI()
