@@ -35,5 +35,5 @@ if __name__ == "__main__":
     port=8080,
     log_level="debug",
     # debug=True,
-    #reload=True
+    reload=True
    )

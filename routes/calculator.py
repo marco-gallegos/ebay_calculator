@@ -2,7 +2,6 @@ from fastapi import APIRouter
 
 app = APIRouter()
 
-@app.get("/calculator/{user_id}")
-async def read_user(user_id: str):
-    print(user_id)
-    return {"user_id": user_id}
+@app.get("/calculator/{price}")
+async def read_user(price: float, dollar_price: float = 1):
+    return { "price": price, "dollar_price": dollar_price }
